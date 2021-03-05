@@ -1,30 +1,20 @@
 #include "Target.h"
 
-Target::Target(sf::Vector2f pos)
+Target::Target(sf::Vector2f pos, const AssetManager& manager)
 {
-	// loading texture
-	if (!this->texture.loadFromFile("./Sprites/target.png"))
-		std::cout << "[!] Failed to load texture." << std::endl;
-	else
-	{
-		this->texture.setSmooth(true);
-		this->spr.setTexture(this->texture);
-	}
-	
-	// setting sprite
+	// Setting sprite
+	this->spr.setTexture(manager.GetTexture("target"));
 	this->spr.setScale(this->scale, this->scale);
 	this->spr.setPosition(pos);
 	this->spr.setOrigin(
-		this->spr.getTexture()->getSize().x / 2,
-		this->spr.getTexture()->getSize().y / 2);
+		float(this->spr.getTexture()->getSize().x / 2),
+		float(this->spr.getTexture()->getSize().y / 2));
 }
 
 Target::~Target()
-{
+{ }
 
-}
-
-sf::Sprite Target::GetSpr() const
+sf::Sprite& Target::GetSpr()
 {
 	return this->spr;
 }

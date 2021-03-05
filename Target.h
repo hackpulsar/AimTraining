@@ -3,26 +3,22 @@
 #include <iostream>
 
 #include "SFML/Graphics.hpp"
-#include "SFML/Audio.hpp"
-#include "SFML/Network.hpp"
-#include "SFML/Window.hpp"
-#include "SFML/System.hpp"
+#include "AssetManager.h"
 
 class Target
 {
 private:
 	sf::Sprite spr;
-	sf::Texture texture;
 	
 public:
-	Target(sf::Vector2f pos);
+	Target(sf::Vector2f pos, const AssetManager& manager);
 	~Target();
 
 	float scale = 0.0f;
 	float step = 0.015f;
 
 	// Getters
-	sf::Sprite GetSpr() const;
+	sf::Sprite& GetSpr();
 
 	// Functions
 	void update(float delta);

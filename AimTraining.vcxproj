@@ -145,12 +145,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="Flash.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameOverScreen.cpp" />
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Spawner.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
+    <ClCompile Include="Statistic.cpp" />
     <ClCompile Include="Target.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="Defenitions.hpp" />
+    <ClInclude Include="Flash.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameOverScreen.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Spawner.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateMachine.h" />
+    <ClInclude Include="Statistic.h" />
     <ClInclude Include="Target.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
