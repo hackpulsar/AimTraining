@@ -6,7 +6,7 @@ AssetManager::~AssetManager()
 	this->_buffers.clear();
 }
 
-void AssetManager::PlaySound(std::string name)
+void AssetManager::playSound(std::string name)
 {
 	this->_sounds.at(name).play();
 }

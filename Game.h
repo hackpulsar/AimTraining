@@ -12,6 +12,7 @@
 #include "AssetManager.h"
 #include "StateMachine.h"
 #include "InputManager.h"
+#include "Settings.h"
 
 struct GameData
 {
@@ -19,6 +20,7 @@ struct GameData
 	AssetManager assets;
 	StateMachine machine;
 	InputManager input;
+	Settings settings;
 };
 
 typedef std::shared_ptr<GameData> GameDataRef;

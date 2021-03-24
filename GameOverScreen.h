@@ -6,6 +6,7 @@
 #include "GameState.h"
 #include "Menu.h"
 #include "Statistic.h"
+#include "Button.h"
 #include <string>
 
 class GameOverScreen : public State
@@ -20,9 +21,9 @@ private:
 	sf::Text score;
 
 	// Buttons
-	sf::Sprite play_button;
-	sf::Sprite menu_button;
-	sf::Sprite quit_button;
+	Engine::Button play_button;
+	Engine::Button menu_button;
+	Engine::Button quit_button;
 
 	void InitText(float x, float y, sf::Text& text, unsigned int size, std::string string);
 

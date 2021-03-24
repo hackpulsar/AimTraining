@@ -4,6 +4,8 @@
 #include "State.h"
 #include "Game.h"
 #include "GameState.h"
+#include "Button.h"
+#include "SettingsState.h"
 
 // TODO: make nice background animation of targets
 // TODO: add some animation after kill and disappearance of targets
@@ -17,8 +19,9 @@ private:
 	sf::Text title;
 
 	// Buttons
-	sf::Sprite play_button;
-	sf::Sprite quit_button;
+	Engine::Button play_button;
+	Engine::Button settings_button;
+	Engine::Button quit_button;
 
 public:
 	// Init

@@ -1,7 +1,5 @@
 #pragma once
 
-// TODO: add setting state and setting logic
-
 class State
 {
 public:

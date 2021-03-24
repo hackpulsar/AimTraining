@@ -26,6 +26,8 @@ private:
 
 	sf::Clock _clock;
 
+	Colors _colors;
+
 	// Statistic
 	Statistic _stats;
 

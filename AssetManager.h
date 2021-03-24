@@ -16,7 +16,7 @@ public:
 	AssetManager();
 	~AssetManager();
 
-	void PlaySound(std::string name);
+	void playSound(std::string name);
 
 	// Loading
 	void LoadTexture(std::string name, std::string filename);

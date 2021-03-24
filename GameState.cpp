@@ -11,6 +11,7 @@ GameState::~GameState()
 void GameState::Init()
 {
 	this->cursor->setTexture(this->_data->assets.GetTexture("cursor"));
+	this->cursor->setColor(std::get<0>(_colors[_data->settings.GetSetting("cursor color")]));
 
 	this->_data->window.setMouseCursorVisible(false);
 	cursor->setScale(0.035f, 0.035f);
@@ -51,7 +52,7 @@ void GameState::PollEvents()
 				if (i != this->spawner->GetTargets().end())
 				{
 					this->spawner->DeleteTarget(i);
-					this->_data->assets.PlaySound("pop sound");
+					this->_data->assets.playSound("pop sound");
 					this->_stats.AddClick(true);
 					this->_stats.AddScore(10);
 				}
@@ -82,7 +83,7 @@ void GameState::update(float delta)
 		{
 			this->spawner->DeleteTarget(it);
 			--hp;
-			this->_data->assets.PlaySound("hurt sound");
+			this->_data->assets.playSound("hurt sound");
 		}
 
 		if (hp <= 0)

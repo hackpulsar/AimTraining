@@ -25,7 +25,6 @@ Info Statistic::GetInfo() const
 
 double Statistic::GetAccuracy() const
 {
-	// TODO: get only 2 numbers after dot
 	if (this->_info.clicked == 0) return 0.0;
 	double res = (double(this->_info.correct_clicks) / double(this->_info.clicked)) * 100.0;
 	return res;
