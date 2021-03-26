@@ -7,29 +7,27 @@
 #include "GameOverScreen.h"
 #include "Flash.h"
 #include "Statistic.h"
+#include "ParticleSystem.h"
 
 class GameState : public State
 {
 private:
 	GameDataRef _data;
-
 	sf::Sprite* cursor;
 
-	// Spawner
 	Spawner* spawner;
-
-	// Flash screen
-	Flash* flash;
+	ParticleSystem* particleSystem;
 
 	// Current game state
 	GameStates _state;
 
 	sf::Clock _clock;
-
 	Colors _colors;
 
 	// Statistic
 	Statistic _stats;
+	// Flash screen
+	Flash* flash;
 
 	// Health
 	std::vector<sf::Sprite> health;

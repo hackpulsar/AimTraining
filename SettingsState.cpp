@@ -1,5 +1,8 @@
 #include "SettingsState.h"
 
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+
 SettingsState::SettingsState(GameDataRef data)
 	:_data(data)
 { }
@@ -77,6 +80,7 @@ void SettingsState::PollEvents()
 				{
 					save_button.Click();
 					_data->settings.Save();
+					MessageBoxA(NULL, "Settings saved successfully!", "Settings", MB_OK | MB_ICONINFORMATION);
 				}
 			}
 		}

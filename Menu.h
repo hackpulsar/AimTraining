@@ -8,7 +8,6 @@
 #include "SettingsState.h"
 
 // TODO: make nice background animation of targets
-// TODO: add some animation after kill and disappearance of targets
 
 class Menu : public State
 {

@@ -2,7 +2,7 @@
 
 GameState::GameState(GameDataRef data)
 	:_data(data), cursor(new sf::Sprite), spawner(new Spawner(this->_data)),
-	flash(new Flash(this->_data)), _state(GameStates::Playing)
+	flash(new Flash(this->_data)), _state(GameStates::Playing), particleSystem(new ParticleSystem(this->_data))
 { }
 
 GameState::~GameState()
@@ -47,14 +47,31 @@ void GameState::PollEvents()
 		case sf::Event::MouseButtonPressed:
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
-				auto i = std::remove_if(this->spawner->GetTargets().begin(), this->spawner->GetTargets().end(),
+				auto it = std::find_if(this->spawner->GetTargets().begin(), this->spawner->GetTargets().end(),
 					[&](Target* t) { return t->GetSpr().getGlobalBounds().contains((float)mouse.x, (float)mouse.y); });
-				if (i != this->spawner->GetTargets().end())
+				if (it != this->spawner->GetTargets().end())
 				{
-					this->spawner->DeleteTarget(i);
-					this->_data->assets.playSound("pop sound");
-					this->_stats.AddClick(true);
-					this->_stats.AddScore(10);
+					// Adding new particle (target death)
+					this->particleSystem->AddParticle(
+						{
+							(*it)->GetSpr().getPosition(),				// position
+							sf::Color(255, 255, 255, 255),				// color
+							(*it)->GetSpr().getScale().x * 550.0f,		// radius
+							1.5f,										// border thickness
+							1.0f										// lifetime
+						});
+
+					auto i = std::remove_if(this->spawner->GetTargets().begin(), this->spawner->GetTargets().end(),
+					[&](Target* t) { return t->GetSpr().getGlobalBounds().contains((float)mouse.x, (float)mouse.y); });
+
+					if (i != this->spawner->GetTargets().end())
+					{
+						this->_data->assets.playSound("pop sound");
+						this->_stats.AddClick(true);
+						this->_stats.AddScore(10);
+
+						this->spawner->DeleteTarget(i);
+					}
 				}
 				else
 				{
@@ -94,6 +111,8 @@ void GameState::update(float delta)
 
 		// Updating Spawner
 		this->spawner->update(delta);
+		// Updating particles
+		this->particleSystem->update(delta);
 	}
 
 	if (this->_state == GameStates::GameOver)
@@ -115,6 +134,9 @@ void GameState::render() const
 
 	// Flash
 	this->flash->render();
+
+	// Particles
+	this->particleSystem->render();
 
 	this->_data->window.draw(*cursor); // Drawing cursor
 	this->_data->window.display();
